@@ -1,5 +1,0 @@
-steps:
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/staging-env-321815/gcp-cloudrun:$SHORT_SHA', '.']
-- name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/gcr.io/staging-env-321815/gcp-cloudrun:$SHORT_SHA']
