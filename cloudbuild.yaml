@@ -4,3 +4,5 @@ steps:
   timeout: 500s
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/staging-env-321815/gcp-cloudrun:$SHORT_SHA']
+- name: 'gcr.io/cloud-builders/gcloud'
+  args: ['beta', 'run', 'deploy', 'cloud-run-test', '--image=gcr.io/staging-env-321815/gcp-cloudrun:$SHORT_SHA', '--region=us-central1']
