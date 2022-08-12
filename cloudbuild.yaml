@@ -1,8 +1,13 @@
 steps:
+# Build the container image
 - name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '--network=cloudbuild','-t', 'gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA', '.']
-  timeout: 500s
+  args: ['build', '-t', 'gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA', '.']
+# Push the container image to Container Registry
 - name: 'gcr.io/cloud-builders/docker'
   args: ['push', 'gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA']
-- name: 'gcr.io/cloud-builders/gcloud'
-  args: ['beta', 'run', 'deploy', 'cloud-run-test', '--image=gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA', '--region=us-central1']
+# Deploy container image to Cloud Run
+- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args: ['run', 'deploy', 'cloud-run-test', '--image', 'gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA', '--region', 'us-central1']
+images:
+- gcr.io/tvun-cloudbuild/gcp-cloudrun:$SHORT_SHA
