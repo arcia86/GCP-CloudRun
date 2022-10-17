@@ -32,6 +32,7 @@ const PORT = process.env.PORT || 9000
 http
   .createServer((req, res) => {
     console.log('New connection')
+    message = (req.header('X-Client-Geo-Location') != null ? 'You are viewing from ' + req.header('X-Client-Geo-Location') : '')
     res.end('Welcome !!')
   })
   .listen(PORT, () => console.log('Listening on', PORT))
