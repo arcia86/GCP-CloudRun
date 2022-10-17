@@ -33,6 +33,6 @@ http
   .createServer((req, res) => {
     console.log('New connection')
     message = (req.header('X-Client-Geo-Location') != null ? 'You are viewing from ' + req.header('X-Client-Geo-Location') : '')
-    res.render('index', { title: 'Geofenced Service', message: 'Welcome! ' + message })
+    res.render('Welcome! ' + message )
   })
   .listen(PORT, () => console.log('Listening on', PORT))
