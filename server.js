@@ -32,6 +32,6 @@ const PORT = process.env.PORT || 9000
 http
   .createServer((req, res) => {
     console.log('New connection')
-    res.render('Welcome! ')
+    res.end('Welcome !!')
   })
   .listen(PORT, () => console.log('Listening on', PORT))
