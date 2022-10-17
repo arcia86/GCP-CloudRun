@@ -13,3 +13,7 @@ app.get('/geo', (req, res) => {
   message = (req.header('X-Client-Geo-Location') != null ? 'You are viewing from ' + req.header('X-Client-Geo-Location') : '')
   res.render('index', { title: 'Geofenced Service', message: 'Welcome! ' + message })
 })
+
+app.listen(PORT, () => {
+  console.log(`geofenceservice: listening on port ${port}`);
+});
